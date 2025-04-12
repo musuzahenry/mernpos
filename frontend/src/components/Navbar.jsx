@@ -20,7 +20,7 @@ const Navbar = () =>{
     const currrentUser = true; 
 
    return (
-       <header class="max-w-screen mx-auto px-4 py-6 bg-blue-300">
+       <header className="max-w-screen mx-auto px-4 py-6 bg-blue-300">
         <nav className="flex justify-between items-center">
             { /* left side */ }
             <div className="flex justify-between text-white py-2 gap-2">
