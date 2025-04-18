@@ -1,33 +1,39 @@
 import react from 'react';
+import { Link } from 'react-router-dom';
+import { getImgUrl } from "../../utils/getImgUrl";
 import { FiShoppingCart } from 'react-icons/fi';
 
 
-const BookCard = () =>{
+
+const BookCard = ({book}) =>{
     return (
     
-<div className=" rounded-lg transition-shadow duration-300">
+<div className=" rounded-lg transition-shadow duration-300 py-15">
   <div 
    className="flex flex-col sm:flex-row sm:items-center sm:h-72  sm:justify-center gap-4"
    >
     <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
-      <a href="/">
+      <Link to ={`/books/${book?.id}` }>
         <img
-          src="assets/books/book-1.png"
+          src={`${getImgUrl(book?.coverImage)}`}
           alt=""
           className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
         />
-      </a>
+      </Link>
     </div>
 
     <div>
-      <a href="/"><h3 className="text-xl font-semibold hover:text-blue-600 mb-3">
-          Book Title
-        </h3></a>
-      <p className="text-gray-600 mb-5">Book Description</p>
-      <p className="font-medium mb-5">
-        $80 <span className="line-through font-normal ml-2">$100</span>
+      <Link to ={`/books/${book?.id}` }>
+         <h3 className="text-xl font-semibold hover:text-blue-600 mb-3">{book?.title}</h3>
+      </Link>
+      <p className="text-gray-600 mb-5">
+        { book?.description > 50 ? `${book?.description.slice(0,50)}...` : book?.description.slice(0,70) }
       </p>
-      <button className="btn-primary px-6 space-x-1 flex items-center gap-1 ">
+
+      <p className="font-medium mb-5">
+        ${  book?.newPrice } <span className="line-through font-normal ml-2"> ${  book?.oldPrice } </span>
+      </p>
+      <button className="btn-primary px-6  space-x-1 flex items-center gap-1 ">
         <FiShoppingCart className="" />
         <span>Add to Cart</span>
       </button>
